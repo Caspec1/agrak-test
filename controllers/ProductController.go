@@ -54,7 +54,7 @@ func NewProduct(c *gin.Context) {
 	}
 
 	// Validate price
-	errPrice := validations.PrinceValidation(product.Price)
+	errPrice := validations.PriceValidation(product.Price)
 	if errPrice != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"msg": errPrice.Error()})
 		return
@@ -137,7 +137,7 @@ func UpdateProduct(c *gin.Context) {
 
 	if body.Price != 0 {
 		// Validate price
-		errPrice := validations.PrinceValidation(body.Price)
+		errPrice := validations.PriceValidation(body.Price)
 		if errPrice != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"msg": errPrice.Error()})
 			return
