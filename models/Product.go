@@ -8,7 +8,7 @@ import (
 type Product struct {
 	gorm.Model
 
-	SKU         string         `gorm:"not null" json:"sku"`
+	SKU         string         `gorm:"not null" json:"sku" query:"sku"`
 	Name        string         `gorm:"not null" json:"name"`
 	Brand       string         `gorm:"not null" json:"brand"`
 	Size        string         `gorm:"not null" json:"size"`
