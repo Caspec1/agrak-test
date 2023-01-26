@@ -3,15 +3,13 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/caspec1/agrak-test/config"
 	"github.com/caspec1/agrak-test/models"
 	"github.com/caspec1/agrak-test/validations"
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 )
 
-// Create a new product
-func NewProduct(c *gin.Context) {
+func NewProductMocked(c *gin.Context) {
 	var product models.Product
 
 	// Get info from json
@@ -76,18 +74,12 @@ func NewProduct(c *gin.Context) {
 		}
 	}
 
-	// Save in DB
-	config.DB.Create(&product)
-
 	c.JSON(http.StatusCreated, gin.H{
-		"product": product,
-		"msg":     "Created successfully",
+		"msg": "Created successfully",
 	})
 }
 
-// Update a product
-func UpdateProduct(c *gin.Context) {
-	sku := c.Param("sku")
+func UpdateProductMocked(c *gin.Context) {
 	var body struct {
 		SKU         string         `json:"sku"`
 		Name        string         `json:"name"`
@@ -99,7 +91,7 @@ func UpdateProduct(c *gin.Context) {
 	}
 
 	// Get info from json
-	err := c.ShouldBind(&body)
+	err := c.ShouldBindJSON(&body)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"msg": "Can't get information"})
@@ -161,86 +153,29 @@ func UpdateProduct(c *gin.Context) {
 		}
 	}
 
-	var product models.Product
-
-	// Get product from DB
-	config.DB.Take(&product, "sku = ?", sku)
-
-	// Check if the product exists
-	if product.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{"msg": "Producto no encontrado"})
-		return
-	}
-
-	// Update product
-	config.DB.Model(&product).Updates(models.Product{
-		SKU:         body.SKU,
-		Name:        body.Name,
-		Brand:       body.Brand,
-		Size:        body.Size,
-		Price:       body.Price,
-		ImageUrl:    body.ImageUrl,
-		OtherImages: body.OtherImages,
-	})
-
 	// Returns a message to the client
 	c.JSON(http.StatusOK, gin.H{
-		"msg":     "Updated Successfully",
-		"product": product,
+		"msg": "Updated Successfully",
 	})
-
 }
 
-// Get all products
-func GetProducts(c *gin.Context) {
-	var products []models.Product
+func GetProductsMocked(c *gin.Context) {
 
-	config.DB.Find(&products)
-
-	c.JSON(http.StatusOK, products)
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "Products",
+	})
 }
 
-// Get product by sku
-func GetProductBySKU(c *gin.Context) {
-	sku := c.Param("sku")
-	var product models.Product
-
-	// Get product from DB
-	config.DB.Take(&product, "sku = ?", sku)
-
-	// Check if the product exists
-	if product.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{"msg": "Producto no encontrado"})
-		return
-	}
+func GetProductBySKUMocked(c *gin.Context) {
 
 	// Return product
-	c.JSON(http.StatusOK, product)
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "Product",
+	})
 }
 
-// Delete a product
-func DeleteProduct(c *gin.Context) {
-	sku := c.Param("sku")
-	var product models.Product
-
-	// Get product from DB
-	config.DB.Take(&product, "sku = ?", sku)
-
-	// Check if the product exists
-	if product.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{"msg": "Producto no encontrado"})
-		return
-	}
-
-	// Delete from DB
-	config.DB.Delete(&product)
-
-	// NOTE: if you want delete the complete data from DB run:
-	// config.DB.Unscoped().Delete(&product)
-
-	// Returns a message to the client
+func DeleteProductMocked(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"msg":     "Delete Successfully",
-		"product": product,
+		"msg": "Delete Successfully",
 	})
 }
