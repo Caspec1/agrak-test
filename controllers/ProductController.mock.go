@@ -9,6 +9,7 @@ import (
 	"github.com/lib/pq"
 )
 
+// Mock newProduct function without db insertion
 func NewProductMocked(c *gin.Context) {
 	var product models.Product
 
@@ -79,6 +80,7 @@ func NewProductMocked(c *gin.Context) {
 	})
 }
 
+// Mock updateProduct function without db insertion
 func UpdateProductMocked(c *gin.Context) {
 	var body struct {
 		SKU         string         `json:"sku"`
@@ -159,6 +161,7 @@ func UpdateProductMocked(c *gin.Context) {
 	})
 }
 
+// Mock getProducts
 func GetProductsMocked(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
@@ -166,6 +169,7 @@ func GetProductsMocked(c *gin.Context) {
 	})
 }
 
+// Mock getProductsBySku
 func GetProductBySKUMocked(c *gin.Context) {
 
 	// Return product
@@ -174,6 +178,7 @@ func GetProductBySKUMocked(c *gin.Context) {
 	})
 }
 
+// Mock deleteProducts
 func DeleteProductMocked(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "Delete Successfully",

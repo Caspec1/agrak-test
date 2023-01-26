@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// Test Price Validation
 func TestPriceValidation(t *testing.T) {
 	testCases := []struct {
 		Name          string

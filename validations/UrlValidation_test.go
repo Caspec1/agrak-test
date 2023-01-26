@@ -6,6 +6,7 @@ import (
 	"testing"
 )
 
+// Test url validation
 func TestUrlValidation(t *testing.T) {
 	testCases := []struct {
 		Name          string

@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// Test response code of the endpoint
 func TestNewProduct(t *testing.T) {
 	mockResponse := `{"msg":"Created successfully"}`
 
@@ -41,6 +42,7 @@ func TestNewProduct(t *testing.T) {
 	assert.Equal(t, http.StatusCreated, w.Code)
 }
 
+// Test response code of the endpoint
 func TestUpdateProduct(t *testing.T) {
 	mockResponse := `{"msg":"Updated Successfully"}`
 
@@ -70,6 +72,7 @@ func TestUpdateProduct(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 }
 
+// Test response code of the endpoint
 func TestGetProducts(t *testing.T) {
 
 	r := gin.Default()
@@ -81,6 +84,7 @@ func TestGetProducts(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 }
 
+// Test response code of the endpoint
 func TestGetProductBySKU(t *testing.T) {
 
 	r := gin.Default()
@@ -107,6 +111,7 @@ func TestGetProductBySKU(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 }
 
+// Test response code of the endpoint
 func TestDeleteProduct(t *testing.T) {
 
 	r := gin.Default()

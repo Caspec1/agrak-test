@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// Test Sku Validation
 func TestSkuValidation(t *testing.T) {
 
 	testCases := []struct {

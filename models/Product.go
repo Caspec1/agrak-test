@@ -5,6 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Set models
 type Product struct {
 	gorm.Model
 
