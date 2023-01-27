@@ -33,11 +33,11 @@ Run this on the root of project for build api
 Run this for execute api
 
 MacOs
-```go
+```bash
     ./agrak-test
 ```
 Windows
-```go
+```bash
     agrak-test.exe
 ```
 
@@ -47,7 +47,7 @@ Use the api with Postman or Thunder Client
 ## Requests
 
 ```go
-    GET "/api/products" //Get all products
+        GET "/api/products" //Get all products
 	POST "/api/products" // Create a product
 	GET "/api/products/:sku" // Get product by sku
 	PUT "/api/products/:sku" // Update product
